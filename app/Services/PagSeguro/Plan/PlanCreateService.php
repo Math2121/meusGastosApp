@@ -2,9 +2,10 @@
 
 namespace App\Services\Pagseguro\Plan;
 
+use App\Interfaces\IPlanCreateService\IPlanCreateService;
 use Illuminate\Support\Facades\Http;
 
-class PlanCreateService
+class PlanCreateService implements IPlanCreateService
 {
     private $email;
     private $token;

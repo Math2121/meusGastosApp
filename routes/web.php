@@ -3,6 +3,7 @@
 use App\Http\Livewire\Expense\ExpenseCreate;
 use App\Http\Livewire\Expense\ExpenseEdit;
 use App\Http\Livewire\Expense\ExpenseList;
+use App\Http\Livewire\Payment\CreditCard;
 use App\Http\Livewire\Plan\PlanCreate;
 use App\Http\Livewire\Plan\PlanList;
 use Illuminate\Support\Facades\File;
@@ -53,3 +54,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/create', PlanCreate::class)->name('create');
     });
 });
+
+Route::get("subscription", CreditCard::class)->name('plan.subscription');
