@@ -75,6 +75,7 @@
                         PagSeguroDirectPayment.getBrand({
                             cardBin: cardNumber,
                             success: (response) => {
+                                console.log(response);
                                 this.brandName = response.brand.name
                             }
                         })
