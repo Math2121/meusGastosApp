@@ -19,7 +19,7 @@ class CreditCard extends Component
         $response = Http::post($url);
         $response = simplexml_load_string($response->body());
 
-        $this->sessionId = $response->id;
+        $this->sessionId = (string) $response->id;
     }
     public function processSubscription($data)
     {

@@ -91,15 +91,15 @@
                         brand: this.brandName,
                         cvv: formData.get('card_cvv'),
                         expirationMonth: formData.get('card_month'),
-                        expirationYear: formData.get('card_cyer'),
+                        expirationYear: formData.get('card_year'),
                         success: (response) => {
-                        
+                      
                             let payload = {
                                 "token": response.card.token,
                                 "senderHash": PagSeguroDirectPayment.getSenderHash()
                             }
-
-                            Livewire.emit('paymentData',payload)
+                            console.log(payload)
+                   
                         }
                     })
                 }
