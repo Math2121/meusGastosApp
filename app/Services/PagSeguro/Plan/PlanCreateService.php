@@ -2,10 +2,10 @@
 
 namespace App\Services\Pagseguro\Plan;
 
-use App\Interfaces\IPlanCreateService\IPlanCreateService;
+use App\Interfaces\IPlanCreateService;
 use Illuminate\Support\Facades\Http;
 
-class PlanCreateService implements IPlanCreateService
+class PlanCreateService
 {
     private $email;
     private $token;
@@ -18,7 +18,8 @@ class PlanCreateService implements IPlanCreateService
     {
 
         $response  = Http::withHeaders([
-            'Accept' => 'application/vnd.pagseguro.com.br.v3+json;charset=ISO-8859-1', 'Content-Type' => 'application/json'
+            'Accept' => 'application/vnd.pagseguro.com.br.v3+json;charset=ISO-8859-1', 
+            'Content-Type' => 'application/json'
         ])->post(
             "https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/request/?email={$this->email}&token={$this->token}",
             [

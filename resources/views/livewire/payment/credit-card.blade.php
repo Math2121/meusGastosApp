@@ -62,8 +62,8 @@
         </div>
 
     </form>
-    <script type="text/javascript" src=
-    "https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
+    <script type="text/javascript"
+        src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
 
     <script>
         function creditCard() {
@@ -83,9 +83,9 @@
 
                 },
                 cardToken(e) {
-                let formElement = document.querySelector('form[name=creditCard]')
+                    let formElement = document.querySelector('form[name=creditCard]')
                     let formData = new FormData(formElement)
-                 
+
                     PagSeguroDirectPayment.createCardToken({
                         cardNumber: formData.get('card_number'),
                         brand: this.brandName,
@@ -93,13 +93,13 @@
                         expirationMonth: formData.get('card_month'),
                         expirationYear: formData.get('card_year'),
                         success: (response) => {
-                      
+
                             let payload = {
                                 "token": response.card.token,
                                 "senderHash": PagSeguroDirectPayment.getSenderHash()
                             }
-                            console.log(payload)
-                   
+                            Livewire.emit('paymentData', payload)
+
                         }
                     })
                 }

@@ -21,8 +21,10 @@ class CreditCard extends Component
 
         $this->sessionId = (string) $response->id;
     }
-    public function processSubscription($data)
+    public function processSubscription(array $data):void
     {
+        $data['plan_reference'] = '52CE92B4A7A7105884CE4F801FDBA771';
+
         dd($data);
     }
     public function render()

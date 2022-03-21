@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Interfaces\IPlanCreateService;
+namespace App\Interfaces;
 
 interface IPlanCreateService{
     public function makeRequest(array $data);
