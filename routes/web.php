@@ -56,3 +56,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 });
 
 Route::get("subscription", CreditCard::class)->name('plan.subscription');
+
+
+Route::get('notifications',function(){
+$code='09FD4BA1C2C2AF1DD4718F84F34F372C';
+
+return (new \App\Services\PagSeguro\Subscription\SubscriptionHeaderService())->getSubscriptionByCode($code);
+
+
+});

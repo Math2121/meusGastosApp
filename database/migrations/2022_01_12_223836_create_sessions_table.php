@@ -13,6 +13,7 @@ class CreateSessionsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('sessions');
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->foreignId('user_id')->nullable()->index();

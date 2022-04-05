@@ -48,7 +48,7 @@ class SubscriptionService
                     'documents' => [
                         [
                             'type' => 'CPF',
-                            'value' => ''
+                            'value' => '49659822154'
                         ]
                     ]
                 ],
@@ -62,7 +62,7 @@ class SubscriptionService
                             'documents' => [
                                 [
                                     'type' => 'CPF',
-                                    'value' => ''
+                                    'value' => '49659822154'
                                 ]
                             ],
                             'billingAddress' => [
@@ -85,6 +85,8 @@ class SubscriptionService
                 ]
             ]);
 
-        return $response->json();
+        $response = (new SubscriptionHeaderService())->getSubscriptionByCode($response->json()['code']) ;
+
+        return $response;
     }
 }

@@ -18,7 +18,7 @@ class PlanCreateService
     {
 
         $response  = Http::withHeaders([
-            'Accept' => 'application/vnd.pagseguro.com.br.v3+json;charset=ISO-8859-1', 
+            'Accept' => 'application/vnd.pagseguro.com.br.v3+json;charset=ISO-8859-1',
             'Content-Type' => 'application/json'
         ])->post(
             "https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/request/?email={$this->email}&token={$this->token}",
