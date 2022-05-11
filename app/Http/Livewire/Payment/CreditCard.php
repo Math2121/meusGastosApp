@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Payment;
 
+use App\Models\Plan;
 use App\Models\User;
 use App\Services\PagSeguro\Credentials;
 use App\Services\PagSeguro\Subscription\SubscriptionService;
@@ -11,6 +12,7 @@ use Livewire\Component;
 class CreditCard extends Component
 {
     public string $sessionId;
+    public Plan $plan;
     protected $listeners = [
         'paymentData' => 'processSubscription'
     ];
@@ -25,18 +27,20 @@ class CreditCard extends Component
     }
     public function processSubscription(array $data): void
     {
-        $data['plan_reference'] = 'DC0FF3D42121A69FF44E2FBD5B8009BE';
-        $makeSubscription = (new SubscriptionService($data))->makeSubscription($data);
+        // $data['plan_reference'] = $this->plan->reference;
+        // $makeSubscription = (new SubscriptionService($data))->makeSubscription($data);
 
-        $user = User::find(1);
-        $user->plan()->create([
-            'plan_id' =>'1',
-            'status' =>$makeSubscription['status'],
-            'date_subscription'=>(\DateTime::createFromFormat(DATE_ATOM,$makeSubscription['date'])->format('Y-m-d H:i:s')),
-            'reference_transaction' =>$makeSubscription['code']
-        ]);
+        // $user = auth()->user();
+        // $user->plan()->create([
+        //     'plan_id' => $this->plan->id,
+        //     'status' => $makeSubscription['status'],
+        //     'date_subscription' => (\DateTime::createFromFormat(DATE_ATOM, $makeSubscription['date'])->format('Y-m-d H:i:s')),
+        //     'reference_transaction' => $makeSubscription['code']
+        // ]);
 
-        session()->flash('message','Plano Aderido com sucesso');
+        // session()->flash('message', 'Plano Aderido com sucesso');
+        sleep(5);
+        $this->emit('subscriptionFinished');
     }
     public function render()
     {

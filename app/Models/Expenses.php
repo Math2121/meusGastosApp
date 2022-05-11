@@ -17,6 +17,7 @@ class Expenses extends Model
         'type',
         'amount',
     ];
+
     protected $dates = ['expense_date'];
     public function getAmountAttribute()
     {
@@ -32,7 +33,7 @@ class Expenses extends Model
     {
         return $this->attributes['expense_date'] = (DateTime::createFromFormat('d/m/Y H:i:s',$prop)->format('Y-m-d H:i:s'));
     }
-    // N - > 1 
+    // N - > 1
     public function user()
     {
         return $this->belongsTo(User::class);

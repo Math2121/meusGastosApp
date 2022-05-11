@@ -1,12 +1,11 @@
-<div class="max-w-7xl mx-auto py-15 px-4" x-data="creditCard()"
-    x-init="PagSeguroDirectPayment.setSessionId('{{ $sessionId }}')">
+<div class="max-w-7xl mx-auto py-15 px-4" x-data="creditCard()" x-init="PagSeguroDirectPayment.setSessionId('{{ $sessionId }}')">
 
     @include('includes.message')
 
     <div class="flex flex-wrap -mx-3 mb-6">
 
         <h2 class="w-full px-3 mb-6 border-b-2 border-cool-gray-800 pb-4">
-            Realizar Pagamento Assinatura
+            Realizar Pagamento Assinatura - Plano Escolhido {{ $plan->name }}
         </h2>
     </div>
 
@@ -83,6 +82,11 @@
 
                 },
                 cardToken(e) {
+                    let button = e.target;
+                    button.classList.add('cursor-not-allowed', 'disabled:opacity-25')
+                    button.textContent = 'Carregando...'
+
+
                     let formElement = document.querySelector('form[name=creditCard]')
                     let formData = new FormData(formElement)
 
@@ -99,7 +103,9 @@
                                 "senderHash": PagSeguroDirectPayment.getSenderHash()
                             }
                             Livewire.emit('paymentData', payload)
-
+                            Livewire.on('subscriptionFinished', result => {
+                                alert('Adesão concluida...')
+                            })
                         }
                     })
                 }
